@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Display Message</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        crossorigin="anonymous">
+    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style.css') }}">
+
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="h1-center">Display Message</h1>
+        <div class="container-block">
+            <div class="container-box container-box__left">
+                <span class="title-text">Text</span>
+                <p> {{ message['text'] }}</p>
+            </div>
+            <!-- <p>Duration: {{ message['duration'] }} days</p>
+        <p>Views: {{ message['views'] }}</p> -->
+            <div class="container-box container-box__right">
+                <span class="title-text">Files</span>
+                {% if message['files'] %}
+                <ul>
+                    {% for file in message['files'] %}
+                    <li><a href="{{ url_for('static', filename=file) }}">Download File</a></li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <br>
+            </div>
+        </div>
+        <a class="btn btn-primary pull-right submit-btn margin-top" href="{{ url_for('create_message') }}">Create New Message</a>
+    </div>
+</body>
+<!-- <script src="{{ url_for('send_js', filename='script.js') }}"></script> -->
+
+</html>

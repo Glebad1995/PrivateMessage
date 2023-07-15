@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Private Message</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        crossorigin="anonymous">
+    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style.css') }}">
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Write your message below
+        </h1>
+        <form action="/" method="POST" enctype="multipart/form-data">
+            <div class="form-group col-md-12">
+                <textarea class="form-control" name="text" id="text" rows="5" cols="40"></textarea><br>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="duration">Expiration period:</label>
+                <select class="form-control" name="duration" id="duration">
+                    <option value="1">1 day</option>
+                    <option value="7">1 week</option>
+                    <option value="14">2 weeks</option>
+                    <option value="30">1 month</option>
+                </select><br>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="views">Number of reads:</label>
+                <select class="form-control" name="views" id="views">
+                    <option value="1">1 view</option>
+                    <option value="2">2 views</option>
+                    <option value="3">3 views</option>
+                    <option value="4">4 views</option>
+                    <option value="5">5 views</option>
+                </select><br>
+            </div>
+            <div class="form-group col-md-12" style="display: flex;flex-flow: column;">
+                <label for="file">Attachments, max 5, up to 50mb each</label>
+                <input style="display:none" type="file" name="file[]" id="file" multiple accept=".jpg, .jpeg, .png, .pdf" />
+                <label for="file" class="file-label">
+                    <i class="fas fa-cloud-upload-alt"></i> Choose Files
+                </label>
+                <div id="file-list"></div>
+
+            </div>
+            <div class="form-group col-md-12">
+                <input class="btn btn-primary pull-right submit-btn" type="submit" value="Create Message">
+            </div>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+<script src="{{ url_for('send_js', filename='script.js') }}"></script>
